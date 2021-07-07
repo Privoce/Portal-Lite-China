@@ -6,9 +6,6 @@ import InitialConfig from './InitialConfig';
 import App from './App';
 // import reportWebVitals from './reportWebVitals';
 import GlobalStyle from './GlobalStyle';
-if (process.env.REACT_APP_CHROME_EXT == 'true') {
-  window.IS_CHROME_EXT = true;
-}
 ReactDOM.render(
   <StrictMode>
     <InitialConfig />

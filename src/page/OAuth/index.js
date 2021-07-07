@@ -43,14 +43,7 @@ export default function OAuth() {
           setPending(false);
           setTip('授权成功');
           localStorage.setItem('GITHUB_OAUTH_TOKEN', data.access_token);
-          if (process.env.REACT_APP_CHROME_EXT == 'true') {
-            // 谷歌扩展处理逻辑
-            location.href = `${chrome.identity.getRedirectURL('github')}?token=${
-              data.access_token
-            }`;
-          } else {
-            setCountDown(3);
-          }
+          setCountDown(3);
         } else {
           setTip('授权失败');
         }

@@ -6,12 +6,10 @@ import { formatDistanceToNowStrict } from 'date-fns';
 import GoAuth from '../Common/GoAuth';
 import StyledWrapper from './styled';
 import useGoogleAuth from './useGoogleAuth';
-import useGoogleExtAuth from './useGoogleExtAuth';
 import Event from './Event';
 import AddEvent from './AddEvent';
 import Setting from './Setting';
-const googleAuthHook =
-  process.env.REACT_APP_CHROME_EXT == 'true' ? useGoogleExtAuth : useGoogleAuth;
+const googleAuthHook = useGoogleAuth;
 const filterOutPassed = (groupEvents) => {
   if (!groupEvents) return null;
   let evts = [];

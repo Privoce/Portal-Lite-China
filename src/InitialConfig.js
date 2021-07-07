@@ -27,10 +27,9 @@ function gtag() {
   window.dataLayer.push(arguments);
 }
 const isProd = process.env.NODE_ENV == 'production';
-const isExt = process.env.REACT_APP_CHROME_EXT == 'true';
 export default function InitialConfig() {
   useEffect(() => {
-    if (isProd && !isExt) {
+    if (isProd) {
       // 浏览器扩展不需要加载这些
       // google 统计
       const gs = document.createElement('script');
@@ -43,26 +42,6 @@ export default function InitialConfig() {
       gtag('config', 'G-D9W5MTES2G');
       // hotjar
       hotjar.initialize(2178003, 6);
-      // webpushr.com
-      // (function (w, d, s, id) {
-      //   if (typeof w.webpushr !== 'undefined') return;
-      //   w.webpushr =
-      //     w.webpushr ||
-      //     function () {
-      //       (w.webpushr.q = w.webpushr.q || []).push(arguments);
-      //     };
-      //   var js,
-      //     fjs = d.getElementsByTagName(s)[0];
-      //   js = d.createElement(s);
-      //   js.id = id;
-      //   js.async = 1;
-      //   js.src = 'https://cdn.webpushr.com/app.min.js';
-      //   fjs.parentNode.appendChild(js);
-      // })(window, document, 'script', 'webpushr-jssdk');
-      // webpushr('setup', {
-      //   key:
-      //     'BOr-0CF_kFjXgrzZHz5-qtkhjlk_7kfIYHHYIfrdQ1hsRgaDl9yp_a1yX8pHoOzSWwRnTe0EuItHU6a7QAnbsmE'
-      // });
     }
     const handleError = (evt) => {
       console.log('全局图片错误捕捉', evt);
@@ -78,5 +57,5 @@ export default function InitialConfig() {
       window.removeEventListener('error', handleError, true);
     };
   }, []);
-  return <>{isProd && !isExt && <BaiduTongji />}</>;
+  return <>{isProd && <BaiduTongji />}</>;
 }

@@ -59,6 +59,7 @@ export default function RoomTransfer() {
   });
 
   let extId = new URLSearchParams(location.search).get('extid');
+  let wid = new URLSearchParams(location.search).get('wid');
   useEffect(() => {
     const check = async () => {
       let installed = await checkExtensionInstalled(extId);
@@ -77,7 +78,7 @@ export default function RoomTransfer() {
           // 把用户信息同步到vera扩展
           document.dispatchEvent(new CustomEvent('VERA_ROOM_EVENT', { detail: { user } }));
         }
-        document.dispatchEvent(new CustomEvent('VERA_ROOM_EVENT', { detail: { rid: id } }));
+        document.dispatchEvent(new CustomEvent('VERA_ROOM_EVENT', { detail: { rid: id, wid } }));
         // 注入成功
         location.href = currUrl;
       } else {

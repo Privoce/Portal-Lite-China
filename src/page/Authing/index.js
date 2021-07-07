@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 
@@ -40,21 +40,14 @@ const StyledWrapper = styled.section`
 export default function AuthingPage() {
   const { localKey } = useAuthing();
   const history = useHistory();
-  const [isExt] = useState(window.IS_CHROME_EXT);
   useEffect(() => {
     let code = new URLSearchParams(location.search).get('code');
     if (code) {
       localStorage.setItem(localKey, code);
     }
-    if (isExt) {
-      setTimeout(() => {
-        window.close();
-      }, 2000);
-    } else {
-      setTimeout(() => {
-        history.push('/');
-      }, 2000);
-    }
+    setTimeout(() => {
+      history.push('/');
+    }, 2000);
   }, []);
   return (
     <StyledWrapper>
@@ -62,7 +55,7 @@ export default function AuthingPage() {
         <img src={LogoIcon} alt="Logo" />
       </div>
       <span className="tip">登录成功</span>
-      <span className="subtip">{isExt ? '即将关闭该页面...' : '即将跳转...'}</span>
+      <span className="subtip">即将跳转...</span>
     </StyledWrapper>
   );
 }

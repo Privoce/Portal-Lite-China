@@ -10,7 +10,6 @@ import IconClose from '../Icons/Close';
 
 import { useWidgetSettings } from '../../../hooks';
 // import IconClose from './Icons/CircleClose';
-const isExt = window.IS_CHROME_EXT;
 export default function WidgetWrapper({
   data = null,
   readonly = false,
@@ -74,11 +73,9 @@ export default function WidgetWrapper({
   console.log('lang', widgets[name]);
   return (
     <StyledWrapper
-      className={`widget ${compact ? 'compact' : ''} ${
-        disableScroll ? 'noscroll' : ''
-      }  ${currSize} ${hasSizes && sizes.includes('large') ? 'largable' : ''} ${
-        settingVisible ? 'setting' : ''
-      }`}
+      className={`widget ${compact ? 'compact' : ''} ${disableScroll ? 'noscroll' : ''
+        }  ${currSize} ${hasSizes && sizes.includes('large') ? 'largable' : ''} ${settingVisible ? 'setting' : ''
+        }`}
       type={type}
     >
       <div className="container" ref={ref}>
@@ -131,15 +128,11 @@ export default function WidgetWrapper({
           {!standalone && (
             <li className="item">
               <a
-                href={`${
-                  isExt
-                    ? `https://nicegoodthings.com/widgets/${name}?from=home`
-                    : `/widgets/${name}?from=home`
-                }`}
+                href={`/widgets/${name}?from=home`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {isExt ? settingLang.open.standalone : settingLang.open.newTab}
+                {settingLang.open.newTab}
               </a>
             </li>
           )}

@@ -139,8 +139,7 @@ const StyledWrapper = styled.div`
     }
   }
 `;
-let prefix =
-  process.env.REACT_APP_CHROME_EXT == 'true' ? 'https://nicegoodthings.com' : location.origin;
+let prefix = location.origin;
 export default function Share({ name, lang, closeModal }) {
   const { authClient } = useAuthing({
     appId,

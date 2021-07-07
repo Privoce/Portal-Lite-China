@@ -27,23 +27,6 @@ const useWidgets = (keys = null) => {
       setWidgets(keys);
     }
   }, [keys]);
-  useEffect(() => {
-    // 针对扩展环境下做的删除逻辑
-    if (process.env.REACT_APP_CHROME_EXT == 'true') {
-      if (widgets) {
-        let arr = [];
-        widgets.forEach((key) => {
-          if (Widgets[key]?.extension) {
-            arr.push(key);
-            //  需要种下删除标记
-          }
-        });
-        chrome.storage.sync.set({ widgets: arr }, function () {
-          console.log('set widgets in ext', arr);
-        });
-      }
-    }
-  }, [widgets]);
   const updateWidgetData = (list) => {
     setWidgets(list);
     updateWidgetSetting({ name: 'widgets', data: list });

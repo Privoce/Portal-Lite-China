@@ -7,28 +7,6 @@ const useNavData = (widgetName = '', defaultData) => {
   // const [histories, setHistories] = useState([]);
   const histories = [];
   const { getWidgetSetting, updateWidgetSetting } = useWidgetSettings();
-  // if (process.env.REACT_APP_CHROME_EXT == 'true') {
-  //   chrome.history.search(
-  //     {
-  //       text: '',
-  //       startTime: Date.now() - 7 * (24 * 60 * 60 * 1000), // 7 days ago
-  //       endTime: Date.now()
-  //     },
-  //     (items) => {
-  //       console.log({ items });
-  //       let sorted = items.sort((a, b) => {
-  //         return b.typedCount * 0.6 + b.visitCount - (a.typedCount * 0.6 + a.visitCount);
-  //       });
-  //       console.log({ sorted });
-  //       let hs = sorted.slice(0, 8).map((item) => {
-  //         const { id, title, url } = item;
-  //         return { id, title, url, themeColor: '#fff', history: true };
-  //       });
-  //       console.log({ hs });
-  //       setHistories(hs);
-  //     }
-  //   );
-  // }
   const initialData = defaultData?.local || getWidgetSetting({ name: widgetName }) || [];
   const [data, setData] = useState(initialData);
   const updateNavs = (list) => {

@@ -35,13 +35,12 @@ function App() {
       Authorization: `bearer ${token}`
     }
   });
-  const basePath = window.IS_CHROME_EXT ? '/index.html' : '/';
   return (
     <LanguageProvider defaultValue={languages[0]} persisted languages={languages}>
       <ApolloProvider client={client}>
         <ToastProvider>
           <Suspense fallback={<Loading />}>
-            <Router basename={basePath}>
+            <Router basename={'/'}>
               <Switch>
                 <Route exact path="/">
                   <Home />
